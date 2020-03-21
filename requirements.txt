@@ -1,2 +1,3 @@
 pybleno
 kartverket_tide_api
+wifi
