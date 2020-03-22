@@ -58,7 +58,6 @@ class OfflineDownloadCharacteristic(Characteristic):
                 #TODO validate downloaded data
                 api = TideApi()
                 response = api.get_location_data(self.lon, self.lat, fromTime, toTime, 'TAB')
-                print(response)
                 with open(self.xmlPath, 'w+') as xmlfile:
                     xmlfile.write(response)
                 callback(Characteristic.RESULT_SUCCESS)
