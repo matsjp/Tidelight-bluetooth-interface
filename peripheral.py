@@ -2,14 +2,16 @@ from pybleno import *
 from Config import Config
 from ConfigService import ConfigService
 from WifiService import WifiService
+from OfflineService import OfflineService
 
 bleno = Bleno()
 config = Config()
 configService = ConfigService(config)
 wifiService = WifiService()
+offlineService = OfflineService(config)
 
 name = 'Tide light'
-uuids = ['ec00', 'ec01']
+uuids = ['ec00', 'ec01', 'ec02']
 
 #
 # Wait until the BLE radio powers on before attempting to advertise.
@@ -36,8 +38,8 @@ def onAdvertisingStart(error):
         
         bleno.setServices([
             configService,
-            wifiService
-            
+            wifiService,
+            offlineService
         ])
         
 bleno.on('advertisingStart', onAdvertisingStart)

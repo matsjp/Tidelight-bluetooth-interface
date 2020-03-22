@@ -22,6 +22,10 @@ movingPatterns = {
     0x1: 'wave'
     }
 
+offlineModeStates = {
+    0x1: 'True',
+    0x2: 'False'
+    }
 
 class Config():
     def __init__(self):
@@ -183,6 +187,18 @@ class Config():
         config.set('color', 'moving_speed', str(movingSpeed))
         self.writeConfig(config)
         return movingSpeed
+    
+    def getOfflineMode(self):
+        config = self._getConfig()
+        return config.get('offline', 'offline_mode')
+    
+    def setOfflineMode(self, mode):
+        if mode != 'True' and mode != 'False':
+            raise ValueError('mode must be "True" or "False"')
+        config = self._getConfig()
+        config.set('offline', 'offline_mode', mode)
+        self.writeConfig(config)
+        return mode
     
     def validateColor(self, color):
         regex = '^\[([0-9]|[1-8][0-9]|9[0-9]|1[0-9]{'\
